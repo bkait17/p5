@@ -1,0 +1,52 @@
+package prj5; //whatever the package is called
+
+/**
+*Represents a student's entry from the survey data.
+**/
+public class Participant
+{
+    private Hobby hobby; //enum of hobby assigned to this participant
+    private Major major; //enum of major assigned to this participant
+    private State state; //enum of state assigned to this participant
+    
+    /**
+    *Default constrcutor for the participant class.
+    *@param major - this is the major of the participant.
+    *@param state - this is the state of the participant.
+    *@param hobby - this is the hobby of the participant.
+    **/
+    public Participant(Major major, State state, Hobby hobby)
+    {
+        this.major = major;
+        this.state = state;
+        this.hobby = hobby;
+    }
+    
+    /**
+    *Gets this participant's hobby value
+    *@return hobby - the hobby of this participant.
+    **/
+    public Hobby getHobby()
+    {
+        return hobby;
+    }
+    
+    /**
+    *Gets this participant's state value
+    *@return state - the state of this participant.
+    **/
+    public State getState()
+    {
+        return state;
+    }
+    
+    /**
+    *Gets this participant's major value
+    *@return hobby - the major of this participant.
+    **/
+    public Major getMajor()
+    {
+        return major;
+    }
+    
+}
