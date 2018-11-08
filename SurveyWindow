@@ -27,6 +27,18 @@ public SurveyWindow(){
   window.addButton(next, WindowSide.NORTH);
   next.onClick(this, "clickedNext");
   
+  Button hobby = new Button("Represent Hobby");
+  window.addButton(hobby, WindowSide.SOUTH);
+  hobby.onClick(this, "clickedHobby");
+  
+  Button major = new Button("Represent Major");
+  window.addButton(major, WindowSide.SOUTH);
+  major.onClick(this, "clickedMajor");
+  
+  Button region = new Button("Represent Region");
+  window.addButton(region, WindowSide.SOUTH);
+  region.onClick(this, "clickedRegion");
+  
   Button quitButton = new Button("Quit")
   window.addButton(quitButton, WindowSide.SOUTH);
   quitButton.onClick(this, "clickedQuit");
@@ -48,6 +60,15 @@ public void clickedGenre(Button button){
 }
 
 public void clickedNext(Button button){
+}
+
+public void clickedHobby(Button button){
+}
+
+public void clickedMajor(Button button){
+}
+
+publc void clickedRegion(Button button){
 }
 
 public void clickedQuit(Button button){
