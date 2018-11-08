@@ -1,1 +1,7 @@
 private Window window;
+
+public SurveyWindow(){
+window = new window();
+Button quitButton = new Button("Quit")
+window.addButton(quitButton, WindowSide.SOUTH);
+}
