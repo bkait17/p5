@@ -1,4 +1,4 @@
-package prj5; //whatever the package is called
+package prj5; 
 
 /**
 *Represents a student's entry from the survey data.
