@@ -1,0 +1,37 @@
+/**
+ * 
+ */
+package prj5;
+
+/**
+ * Project runner for the program
+ * 
+ * @author Team 54
+ * @version November 8, 2018
+ */
+// Virginia Tech Honor Code Pledge:
+//
+// As a Hokie, I will conduct myself with honor and integrity at all times.
+// I will not lie, cheat, or steal, nor will I accept the actions of those who
+// do.
+// -- Alyssa Farrell (alyss17)
+
+public class ProjectRunner {
+    /**
+     * Constructor for the class
+     */
+    public ProjectRunner() {
+        // Intentionally left blank, not needed
+    }
+
+
+    /**
+     * Main method that takes in a string array
+     * 
+     * @param string
+     */
+    public static void main(String[] args) 
+    {
+        SurveyWindow disp = new SurveyWindow();
+    }
+}
