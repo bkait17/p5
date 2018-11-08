@@ -1,7 +1,55 @@
 private Window window;
 
 public SurveyWindow(){
-window = new window();
-Button quitButton = new Button("Quit")
-window.addButton(quitButton, WindowSide.SOUTH);
+  window = new window();
+  
+  Button prev = new Button("Prev");
+  window.addButton(prev, WindowSide.NORTH);
+  prev.onClick(this, "clickedPrev");
+  
+  Button artist = new Button("Sort by Artist");
+  window.addButton(artist, WindowSide.NORTH);
+  artist.onClick(this, "clickedArtist");
+  
+  Button song = new Button("Sort by Song Title");
+  window.addButton(song, WindowSide.NORTH);
+  song.onClick(this, "clickedSong");
+  
+  Button year = new Button("Sort by Release Year");
+  window.addButton(year, WindowSide.NORTH);
+  year.onClick(this, "clickedYear");
+  
+  Button genre = new Button("Sort by Genre");
+  window.addButton(genre, WindowSide.NORTH);
+  genre.onClick(this, "clickedGenre");
+  
+  Button next = new Button("Next");
+  window.addButton(next, WindowSide.NORTH);
+  next.onClick(this, "clickedNext");
+  
+  Button quitButton = new Button("Quit")
+  window.addButton(quitButton, WindowSide.SOUTH);
+  quitButton.onClick(this, "clickedQuit");
+}
+
+public void clickedPrev(Button button){
+}
+
+public void clickedArtist(Button button){
+}
+
+public void clickedSong(Button button){
+}
+
+public void clickedYear(Button button){
+}
+
+public void clickedGenre(Button button){
+}
+
+public void clickedNext(Button button){
+}
+
+public void clickedQuit(Button button){
+  System.exit(0);
 }
