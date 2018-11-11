@@ -1,0 +1,230 @@
+package project5;
+
+import java.util.ArrayList;
+
+/**
+ * This class represents the song as an object to be
+ * stored and sorted with the fields: title, artist,
+ * year, and genre.
+ * 
+ * @author Dillon Jenkins (djj2148)
+ * @version 2018.11.10
+ */
+public class Song 
+{
+    private String title; //the title of the song.
+    private String artist; //the artist of the song.
+    private int year; //the year of the song.
+    private String genre; //the genre of the song.
+
+    private ArrayList<Participant> likeList;
+    //this is an array-list to store the participants that
+    //like this song.
+    private ArrayList<Participant> heardList;
+    //this is an array-list to store the participants that
+    //have heard this song.
+
+
+    /**
+     * This is the default constructor for the Song object.
+     * @param title
+     *              this is the title of the song.
+     * @param artist
+     *              this is the artist of the song.
+     * @param year
+     *              this is the year of the song.
+     * @param genre
+     *              this is the genre of the song.
+     */
+    public Song(String title, String artist, int year, String genre) 
+    {
+        this.title = title;
+        this.artist = artist;
+        this.year = year;
+        this.genre = genre;
+        likeList = new ArrayList<Participant>();
+        //initially empty...duh
+        heardList = new ArrayList<Participant>();
+        //initially empty...duh
+    }
+
+
+    /**
+     * Gets the title of this song.
+     * @return title
+     *              the title of the song.
+     */
+    public String getTitle() 
+    {
+        return title;
+    }
+
+    /**
+     * Gets the artist of the song.
+     * @return artist
+     *              the artist of the song.
+     */
+    public String getArtist() 
+    {
+        return artist;
+    }
+
+    /**
+     * Gets the year of the song.
+     * @return year
+     *              the year of the song.
+     */
+    public int getYear() 
+    {
+        return year;
+    }
+
+    /**
+     * Gets the genre of the song.
+     * @return genre
+     *              the genre of the song.
+     */
+    public String getGenre() 
+    {
+        return genre;
+    }
+
+    /**
+     * Gives the string representation of this song.
+     * @return out
+     *          the string of the song's title, artist,
+     *          year, and genre.
+     */
+    public String toString() //this needs adjusting.
+    {
+        StringBuilder out = new StringBuilder();
+        out.append("Title:" + title);
+        out.append(", Artist:" + artist);
+        out.append(", Year:" + year);
+        out.append(", Genre:" + genre);
+        return out.toString();
+    }
+
+    /**
+     * This method adds Participant part to either likedList or heardList passed
+     * to this method.
+     * @param list
+     *          this is the ArrayList that is passed to this method.
+     * @param part
+     *          this is the Participant that is passed to this method
+     *          to add to the list.
+     */
+    public void addToList(ArrayList<Participant> list, Participant part) 
+    {
+        list.add(part);
+    }
+
+
+    /**
+     * This method goes through the list that is passed to this method and looks
+     * for the participants with the Hobby enumeration
+     * that is also passed to this method.
+     * @param list
+     *          this is the list passed to this method.
+     * @param hobby
+     *          this is the hobby enumeration that is looked for through
+     *          the list of participants.
+     * @return count
+     *              this is the number of participants that share the hobby
+     *              enumeration passed to this method.
+     */
+    public int getHobbyCount(ArrayList<Participant> list, Hobby hobby) 
+    {
+        int count = 0; //starts at zero
+        for (int i = 0; i < list.size(); i++) 
+        {
+            if (list.get(i).getHobby() == hobby) 
+            {
+                count++; //for every participant with the hobby passed
+                //increases the count variable.
+            }
+        }
+        return count;
+    }
+
+
+    /**
+     * This method goes through the list that is passed to this method and looks
+     * for the participants with the State enumeration
+     * that is also passed to this method.
+     * @param list
+     *          this is the list passed to this method.
+     * @param state
+     *          this is the State enumeration that is looked for through
+     *          the list of participants.
+     * @return count
+     *              this is the number of participants that share the State
+     *              enumeration passed to this method.
+     */
+    public int getStateCount(ArrayList<Participant> list, State state) 
+    {
+        int count = 0;
+        for (int i = 0; i < list.size(); i++) 
+        {
+            if (list.get(i).getState() == state) 
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+
+    /**
+     * This method goes through the list that is passed to this method and looks
+     * for the participants with the Major enumeration
+     * that is also passed to this method.
+     * @param list
+     *          this is the list passed to this method.
+     * @param major
+     *          this is the Major enumeration that is looked for through
+     *          the list of participants.
+     * @return count
+     *              this is the number of participants that share the major
+     *              enumeration passed to this method.
+     */
+    public int getMajorCount(ArrayList<Participant> list, Major major) 
+    {
+        int count = 0;
+        for (int i = 0; i < list.size(); i++) 
+        {
+            if (list.get(i).getMajor() == major) 
+            {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    
+    /**
+     * This method gives the ArrayList of either the likedList or
+     * the heardList based on a String of "like" for the likedList
+     * and "heard" for the heardList.
+     * @param listName
+     *              this is the String of the ArrayList to be returned.
+     * @return the list that is needed based on the STring passed to this
+     *          method.
+     *      
+     */
+    public ArrayList<Participant> getList(String listName) 
+    {
+        if (listName.equals("like")) 
+        {
+            return likeList;
+        }
+        if (listName.equals("heard")) 
+        {
+            return heardList;
+        }
+        else
+        {
+            return null;
+        }
+    }
+}
