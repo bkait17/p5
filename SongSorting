@@ -1,0 +1,13 @@
+package project5;
+
+/**
+ * This enumeration represents the song's
+ * field values as either its TITLE,
+ * ARTIST, YEAR, or GENRE
+ * @author Dillon Jenkkins (djj2148)
+ * @version 2018.11.10
+ */
+public enum SongSorting
+{
+    TITLE, ARTIST, YEAR, GENRE;
+}
