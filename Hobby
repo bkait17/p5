@@ -1,0 +1,13 @@
+package project5;
+
+/**
+ * This is the enumeration of the participant's
+ * it only contains the values SPORTS, 
+ * READING, MUSIC, and ART.
+ * @author Dillon Jenkins
+ * @version 2018.11.10
+ */
+public enum Hobby
+{
+    SPORTS, READING, MUSIC, ART;
+}
