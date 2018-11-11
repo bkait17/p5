@@ -1,0 +1,13 @@
+package project5;
+
+/**
+ * This enumeration represents the participant's
+ * major with the only values being CS for Computer Science,
+ * Engineer for Engineering, Math for Math and Other for other.
+ * @author Dillon Jenkins (djj2148)
+ * @version 2018.11.10
+ */
+public enum Major
+{
+    CS, ENGINEER, MATH, OTHER;
+}
