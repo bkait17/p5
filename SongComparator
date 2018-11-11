@@ -1,0 +1,73 @@
+package project5;
+
+import java.util.Comparator;
+
+/**
+ * This class represents a Comparator that
+ * is made specifically for comparing Song objects.
+ * 
+ * @author Dillon Jenkins (djj2148)
+ * @version 2018.11.10
+ */
+public class MyComparator implements Comparator<Song> 
+{
+    // Enumeration of the values saved in the Song class
+    private SongSorting sort;
+
+    /**
+     * Default constructor for SongComparator that takes the parameter
+     * sort which can be the NAME, ARTIST, YEAR,
+     * or GENRE.
+     * 
+     * @param sort
+     *            - this is the enumeration of the songs value
+     *            to be sorted.
+     */
+    public MyComparator(SongSorting sort) 
+    {
+        this.sort = sort;
+    }
+
+    /**
+     * This method makes the comparison of two songs by using the
+     * field saved parameter and two songs passed as parameters for
+     * this method.
+     * @param song1
+     *              this is the first song.
+     * @param song2
+     *              this is the second song.
+     * @return int 
+     *              this is the int value that is representative of
+     *              the comparison.
+     */
+    @Override
+    public int compare(Song song1, Song song2) 
+    {
+
+        switch (sort) 
+        {
+            case TITLE:
+                return (song1.getTitle().compareToIgnoreCase(song2.getTitle()));
+            case ARTIST:
+                return (song1.getArtist().compareToIgnoreCase(song2.getArtist()));
+            case YEAR:
+                if (song1.getYear() > song2.getYear()) 
+                {
+                    return 1;
+                }
+                if (song1.getYear() < song2.getYear()) 
+                {
+                    return -1;
+                }
+                else 
+                {
+                    return 0;
+                }
+            case GENRE:
+                return (song1.getGenre().compareToIgnoreCase(song2.getGenre()));
+            default:
+                return 0;
+        }
+    }
+
+}
