@@ -10,92 +10,106 @@ import java.util.ArrayList;
  * @author Dillon Jenkins (djj2148)
  * @version 2018.11.10
  */
-public class Song 
+public class Song
 {
-    private String title; //the title of the song.
-    private String artist; //the artist of the song.
-    private int year; //the year of the song.
-    private String genre; //the genre of the song.
+    private String title; // the title of the song.
+    private String artist; // the artist of the song.
+    private int year; // the year of the song.
+    private String genre; // the genre of the song.
 
     private ArrayList<Participant> likeList;
-    //this is an array-list to store the participants that
-    //like this song.
+    // this is an array-list to store the participants that
+    // like this song.
     private ArrayList<Participant> heardList;
-    //this is an array-list to store the participants that
-    //have heard this song.
+    // this is an array-list to store the participants that
+    // have heard this song.
+    private ArrayList<Participant> noLike;
+    private ArrayList<Participant> noHeard;
 
 
     /**
      * This is the default constructor for the Song object.
+     * 
      * @param title
-     *              this is the title of the song.
+     *            this is the title of the song.
      * @param artist
-     *              this is the artist of the song.
+     *            this is the artist of the song.
      * @param year
-     *              this is the year of the song.
+     *            this is the year of the song.
      * @param genre
-     *              this is the genre of the song.
+     *            this is the genre of the song.
      */
-    public Song(String title, String artist, int year, String genre) 
+    public Song(String title, String artist, int year, String genre)
     {
         this.title = title;
         this.artist = artist;
         this.year = year;
         this.genre = genre;
         likeList = new ArrayList<Participant>();
-        //initially empty...duh
+        // initially empty...duh
         heardList = new ArrayList<Participant>();
-        //initially empty...duh
+        // initially empty...duh
+        noLike = new ArrayList<Participant>();
+        noHeard = new ArrayList<Participant>();
     }
 
 
     /**
      * Gets the title of this song.
+     * 
      * @return title
-     *              the title of the song.
+     *         the title of the song.
      */
-    public String getTitle() 
+    public String getTitle()
     {
         return title;
     }
 
+
     /**
      * Gets the artist of the song.
+     * 
      * @return artist
-     *              the artist of the song.
+     *         the artist of the song.
      */
-    public String getArtist() 
+    public String getArtist()
     {
         return artist;
     }
 
+
     /**
      * Gets the year of the song.
+     * 
      * @return year
-     *              the year of the song.
+     *         the year of the song.
      */
-    public int getYear() 
+    public int getYear()
     {
         return year;
     }
 
+
     /**
      * Gets the genre of the song.
+     * 
      * @return genre
-     *              the genre of the song.
+     *         the genre of the song.
      */
-    public String getGenre() 
+    public String getGenre()
     {
         return genre;
     }
 
+
     /**
      * Gives the string representation of this song.
+     * 
      * @return out
-     *          the string of the song's title, artist,
-     *          year, and genre.
+     *         the string of the song's title, artist,
+     *         year, and genre.
      */
-    public String toString() //this needs adjusting.
+    public String toString() // this needs adjusting.
     {
         StringBuilder out = new StringBuilder();
         out.append("Title:" + title);
@@ -105,16 +119,18 @@ public class Song
         return out.toString();
     }
 
+
     /**
      * This method adds Participant part to either likedList or heardList passed
      * to this method.
+     * 
      * @param list
-     *          this is the ArrayList that is passed to this method.
+     *            this is the ArrayList that is passed to this method.
      * @param part
-     *          this is the Participant that is passed to this method
-     *          to add to the list.
+     *            this is the Participant that is passed to this method
+     *            to add to the list.
      */
-    public void addToList(ArrayList<Participant> list, Participant part) 
+    public void addToList(ArrayList<Participant> list, Participant part)
     {
         list.add(part);
     }
@@ -124,27 +140,37 @@ public class Song
      * This method goes through the list that is passed to this method and looks
      * for the participants with the Hobby enumeration
      * that is also passed to this method.
+     * 
      * @param list
-     *          this is the list passed to this method.
+     *            this is the list passed to this method.
      * @param hobby
-     *          this is the hobby enumeration that is looked for through
-     *          the list of participants.
+     *            this is the hobby enumeration that is looked for through
+     *            the list of participants.
      * @return count
-     *              this is the number of participants that share the hobby
-     *              enumeration passed to this method.
+     *         this is the number of participants that share the hobby
+     *         enumeration passed to this method.
      */
-    public int getHobbyCount(ArrayList<Participant> list, Hobby hobby) 
+    public int getHobbyCount(ArrayList<Participant> list, Hobby hobby)
     {
-        int count = 0; //starts at zero
-        for (int i = 0; i < list.size(); i++) 
+        int count = 0; // starts at zero
+        for (int i = 0; i < list.size(); i++)
         {
-            if (list.get(i).getHobby() == hobby) 
+            Hobby check = list.get(i).getHobby();
+
+            if (check == hobby)
             {
-                count++; //for every participant with the hobby passed
-                //increases the count variable.
+                count++; // for every participant with the hobby passed
+                         // increases the count variable.
             }
         }
-        return count;
+        if (count == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return count;
+        }
     }
 
 
@@ -152,21 +178,22 @@ public class Song
      * This method goes through the list that is passed to this method and looks
      * for the participants with the State enumeration
      * that is also passed to this method.
+     * 
      * @param list
-     *          this is the list passed to this method.
+     *            this is the list passed to this method.
      * @param state
-     *          this is the State enumeration that is looked for through
-     *          the list of participants.
+     *            this is the State enumeration that is looked for through
+     *            the list of participants.
      * @return count
-     *              this is the number of participants that share the State
-     *              enumeration passed to this method.
+     *         this is the number of participants that share the State
+     *         enumeration passed to this method.
      */
-    public int getStateCount(ArrayList<Participant> list, State state) 
+    public int getStateCount(ArrayList<Participant> list, State state)
     {
         int count = 0;
-        for (int i = 0; i < list.size(); i++) 
+        for (int i = 0; i < list.size(); i++)
         {
-            if (list.get(i).getState() == state) 
+            if (list.get(i).getState() == state)
             {
                 count++;
             }
@@ -179,21 +206,22 @@ public class Song
      * This method goes through the list that is passed to this method and looks
      * for the participants with the Major enumeration
      * that is also passed to this method.
+     * 
      * @param list
-     *          this is the list passed to this method.
+     *            this is the list passed to this method.
      * @param major
-     *          this is the Major enumeration that is looked for through
-     *          the list of participants.
+     *            this is the Major enumeration that is looked for through
+     *            the list of participants.
      * @return count
-     *              this is the number of participants that share the major
-     *              enumeration passed to this method.
+     *         this is the number of participants that share the major
+     *         enumeration passed to this method.
      */
-    public int getMajorCount(ArrayList<Participant> list, Major major) 
+    public int getMajorCount(ArrayList<Participant> list, Major major)
     {
         int count = 0;
-        for (int i = 0; i < list.size(); i++) 
+        for (int i = 0; i < list.size(); i++)
         {
-            if (list.get(i).getMajor() == major) 
+            if (list.get(i).getMajor() == major)
             {
                 count++;
             }
@@ -201,26 +229,35 @@ public class Song
         return count;
     }
 
-    
+
     /**
      * This method gives the ArrayList of either the likedList or
      * the heardList based on a String of "like" for the likedList
      * and "heard" for the heardList.
+     * 
      * @param listName
-     *              this is the String of the ArrayList to be returned.
+     *            this is the String of the ArrayList to be returned.
      * @return the list that is needed based on the STring passed to this
-     *          method.
-     *      
+     *         method.
+     * 
      */
-    public ArrayList<Participant> getList(String listName) 
+    public ArrayList<Participant> getList(String listName)
     {
-        if (listName.equals("like")) 
+        if (listName.equals("like"))
         {
             return likeList;
         }
-        if (listName.equals("heard")) 
+        if (listName.equals("heard"))
         {
             return heardList;
+        }
+        if (listName.equals("nolike"))
+        {
+            return noLike;
+        }
+        if (listName.equals("noheard"))
+        {
+            return noHeard;
         }
         else
         {
