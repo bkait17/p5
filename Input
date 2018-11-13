@@ -1,1 +1,264 @@
+package project5;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import student.testingsupport.SystemIOUtilities;
+
+public class Scan
+{
+    // Delimiters used in the CSV file
+    private static final String COMMA_DELIMITER = ",";
+
+    private static Scanner scanner;
+    private static ArrayList<Song> array;
+    private static Scanner data;
+
+
+    public static void main(String args[])
+    {
+        array = new ArrayList<Song>();
+        try
+        {
+            scanner = new Scanner(new File("SongListTest1.csv"));
+            data = new Scanner(new File("MusicSurveyDataTest1.csv"));
+            scanner.nextLine(); // also skips banner
+            data.nextLine();
+            while (scanner.hasNextLine())
+            {
+                array.add(makeSong()); // adds songs to arrayList.
+            }
+            while (data.hasNextLine())
+            {
+                makeAndAdd();
+            }
+
+        }
+        catch (FileNotFoundException fe)
+        {
+            fe.printStackTrace();
+        }
+        finally
+        {
+            scanner.close();
+            data.close();
+        }
+        ArrayList<Song> sorted = sortedList(SongSorting.TITLE);
+        for (int i = 0; i < sorted.size(); i++)
+        {
+            Song song = sorted.get(i);
+            System.out.println("Song Title: " + song.getTitle());
+            System.out.println("Song Artist: " + song.getArtist());
+            System.out.println("Song Genre: " + song.getGenre());
+            System.out.println("Song Year: " + song.getYear());
+            System.out.println("Heard");
+            ArrayList<Participant> heard = song.getList("heard");
+            //System.out.println(heard.size());
+            int reading = song.getHobbyCount(heard, Hobby.READING);
+            int art = song.getHobbyCount(heard, Hobby.ART);
+            int sports = song.getHobbyCount(heard, Hobby.SPORTS);
+            int music = song.getHobbyCount(heard, Hobby.MUSIC);
+
+            System.out.println("reading:" + reading + " art:" + art + " sports:"
+                + sports + " music:" + music);
+            
+            
+            System.out.println("Likes");
+            ArrayList<Participant> like = song.getList("like");
+            int likeRead = song.getHobbyCount(like, Hobby.READING);
+            int likeArt = song.getHobbyCount(like, Hobby.ART);
+            int likeSports = song.getHobbyCount(like, Hobby.SPORTS);
+            int likeMusic = song.getHobbyCount(like, Hobby.MUSIC);
+            
+            System.out.println("reading:" + likeRead + " art:" + likeArt + " sports:"
+                + likeSports + " music:" + likeMusic);
+        }
+
+    }
+
+
+    private static String test()
+    {
+        return scanner.nextLine();
+    }
+
+
+    private static void makeAndAdd()
+    {
+        Participant part = null;
+        String line = data.nextLine();
+        Scanner read = new Scanner(line);
+        try
+        {
+            read.useDelimiter(COMMA_DELIMITER);
+            read.next(); // participant number
+            read.next(); // date
+            Major major = convertMajor(read.next()); // major
+            State state = convertState(read.next()); // state
+            Hobby hobby = convertHobby(read.next()); // hobby
+            part = new Participant(major, state, hobby); // make the current
+                                                         // participant
+
+            if (part.isValid()) // if the participant is valid
+            {
+
+                int count = 0; // start at answer 0
+                while (read.hasNext()) // while there is stuff to read
+                {
+                    String one = read.next(); // yes, no, or blank
+                    part.setResponse(one);
+                    Song song = array.get(count / 2); // starts at song 0
+
+                    ArrayList<Participant> heard = song.getList("heard"); // reference
+                                                                          // the
+                                                                          // lists
+                    ArrayList<Participant> like = song.getList("like");
+
+                    ArrayList<Participant> noheard = song.getList("noheard");
+                    ArrayList<Participant> nolike = song.getList("nolike");
+                    if (one.equals("Yes")) // if the tally
+                                           // is a yes, a
+                                           // participant
+                                           // WILL be added
+                                           // to a list
+                    {
+
+                        if (count % 2 == 0) // if the count is even, the list is
+                                            // heard.
+                        {
+                            song.addToList(heard, part);
+                        }
+                        else
+                        {
+                            song.addToList(like, part);
+                        }
+                    }
+                    if (one.equals("No"))
+                    {
+                        if (count % 2 == 0) // if the count is even, the list is
+                        // heard.
+                        {
+                            song.addToList(noheard, part);
+                        }
+                        else
+                        {
+                            song.addToList(nolike, part);
+                        }
+                    }
+                    count++;
+                }
+
+            }
+        }
+        finally
+        {
+            read.close();
+        }
+    }
+
+
+    private static Hobby convertHobby(String text)
+    {
+        switch (text)
+        {
+            case "sports":
+                return Hobby.SPORTS;
+            case "art":
+                return Hobby.ART;
+            case "music":
+                return Hobby.MUSIC;
+            case "reading":
+                return Hobby.READING;
+            default:
+                return null;
+        }
+    }
+
+
+    private static Major convertMajor(String text)
+    {
+        switch (text)
+        {
+            case "Computer Science":
+                return Major.CS;
+            case "Other Engineering":
+                return Major.ENGINEER;
+            case "Math or CMDA":
+                return Major.MATH;
+            case "Other":
+                return Major.OTHER;
+            default:
+                return null;
+        }
+    }
+
+
+    private static State convertState(String text)
+    {
+        switch (text)
+        {
+            case "Northeast":
+                return State.NE;
+            case "Outside of United States":
+                return State.OUT;
+            case "United States (other than Southeast or Northwest)":
+                return State.REST;
+            case "Southeast":
+                return State.SE;
+            default:
+                return null;
+        }
+    }
+
+
+    private static Song makeSong()
+    {
+        Song song = null;
+        String line = test();
+        Scanner data = new Scanner(line);
+        try
+        {
+
+            data.useDelimiter(COMMA_DELIMITER);
+            String name = null;
+            String artist = null;
+            int year = 0;
+            String genre = null;
+
+            while (data.hasNext())
+            {
+                name = data.next();
+                artist = data.next();
+                year = Integer.parseInt(data.next());
+                genre = data.next();
+            }
+            song = new Song(name, artist, year, genre);
+        }
+        finally
+        {
+            data.close();
+        }
+        return song;
+
+    }
+
+
+    /**
+     * Creates a comparator with the sort parameter passed to the comparator.
+     * Then sorts the array based on a switch case within the comparator.
+     * 
+     * @param sort
+     */
+    public static ArrayList<Song> sortedList(SongSorting sort)// depends on if
+                                                              // the buttons
+                                                              // will call this
+                                                              // or not.
+    {
+        MyComparator c = new MyComparator(sort);
+        ArrayList<Song> sorted = array;
+        sorted.sort(c);
+        return sorted;
+    }
+
+}
