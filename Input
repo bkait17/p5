@@ -4,11 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import student.testingsupport.SystemIOUtilities;
 
-public class Scan
+public class Input
 {
-    // Delimiters used in the CSV file
     private static final String COMMA_DELIMITER = ",";
 
     private static Scanner scanner;
@@ -44,46 +42,138 @@ public class Scan
             scanner.close();
             data.close();
         }
-        ArrayList<Song> sorted = sortedList(SongSorting.TITLE);
-        for (int i = 0; i < sorted.size(); i++)
+        sortByGenre();
+        sortByTitle();
+        // This point on is not permanent and will change as progress continues
+        // to reflect the implementation of buttons and so on.
+
+    }
+
+
+    public static void sortByGenre()
+    {
+        ArrayList<Song> genre = sortedList(SongSorting.GENRE);
+        for (int i = 0; i < genre.size(); i++)
         {
-            Song song = sorted.get(i);
+            Song song = genre.get(i); // reference the current song
             System.out.println("Song Title: " + song.getTitle());
             System.out.println("Song Artist: " + song.getArtist());
             System.out.println("Song Genre: " + song.getGenre());
             System.out.println("Song Year: " + song.getYear());
             System.out.println("Heard");
             ArrayList<Participant> heard = song.getList("heard");
-            //System.out.println(heard.size());
+            ArrayList<Participant> noHeard = song.getList("noheard");
             int reading = song.getHobbyCount(heard, Hobby.READING);
             int art = song.getHobbyCount(heard, Hobby.ART);
             int sports = song.getHobbyCount(heard, Hobby.SPORTS);
             int music = song.getHobbyCount(heard, Hobby.MUSIC);
+            int noHeardRead = song.getHobbyCount(noHeard, Hobby.READING);
+            int noHeardArt = song.getHobbyCount(noHeard, Hobby.ART);
+            int noHeardSport = song.getHobbyCount(noHeard, Hobby.SPORTS);
+            int noHeardMusic = song.getHobbyCount(noHeard, Hobby.MUSIC);
+
+            reading = doMath(reading, noHeardRead);
+            art = doMath(art, noHeardArt);
+            sports = doMath(sports, noHeardSport);
+            music = doMath(music, noHeardMusic);
 
             System.out.println("reading:" + reading + " art:" + art + " sports:"
                 + sports + " music:" + music);
-            
-            
+
             System.out.println("Likes");
             ArrayList<Participant> like = song.getList("like");
+            ArrayList<Participant> noLike = song.getList("nolike");
             int likeRead = song.getHobbyCount(like, Hobby.READING);
             int likeArt = song.getHobbyCount(like, Hobby.ART);
             int likeSports = song.getHobbyCount(like, Hobby.SPORTS);
             int likeMusic = song.getHobbyCount(like, Hobby.MUSIC);
-            
-            System.out.println("reading:" + likeRead + " art:" + likeArt + " sports:"
-                + likeSports + " music:" + likeMusic);
+
+            int noLikeRead = song.getHobbyCount(noLike, Hobby.READING);
+            int noLikeArt = song.getHobbyCount(noLike, Hobby.ART);
+            int noLikeSport = song.getHobbyCount(noLike, Hobby.SPORTS);
+            int noLikeMusic = song.getHobbyCount(noLike, Hobby.MUSIC);
+
+            likeRead = doMath(likeRead, noLikeRead);
+            likeArt = doMath(likeArt, noLikeArt);
+            likeSports = doMath(likeSports, noLikeSport);
+            likeMusic = doMath(likeMusic, noLikeMusic);
+            System.out.println("reading:" + likeRead + " art:" + likeArt
+                + " sports:" + likeSports + " music:" + likeMusic);
+            System.out.println();
         }
-
     }
 
 
-    private static String test()
+    public static void sortByTitle()
     {
-        return scanner.nextLine();
+        ArrayList<Song> title = sortedList(SongSorting.TITLE);
+        for (int i = 0; i < title.size(); i++)
+        {
+            Song song = title.get(i); // reference the current song
+            System.out.println("Song Title: " + song.getTitle());
+            System.out.println("Song Artist: " + song.getArtist());
+            System.out.println("Song Genre: " + song.getGenre());
+            System.out.println("Song Year: " + song.getYear());
+            System.out.println("Heard");
+            ArrayList<Participant> heard = song.getList("heard");
+            ArrayList<Participant> noHeard = song.getList("noheard");
+            int reading = song.getHobbyCount(heard, Hobby.READING);
+            int art = song.getHobbyCount(heard, Hobby.ART);
+            int sports = song.getHobbyCount(heard, Hobby.SPORTS);
+            int music = song.getHobbyCount(heard, Hobby.MUSIC);
+            int noHeardRead = song.getHobbyCount(noHeard, Hobby.READING);
+            int noHeardArt = song.getHobbyCount(noHeard, Hobby.ART);
+            int noHeardSport = song.getHobbyCount(noHeard, Hobby.SPORTS);
+            int noHeardMusic = song.getHobbyCount(noHeard, Hobby.MUSIC);
+
+            reading = doMath(reading, noHeardRead);
+            art = doMath(art, noHeardArt);
+            sports = doMath(sports, noHeardSport);
+            music = doMath(music, noHeardMusic);
+
+            System.out.println("reading:" + reading + " art:" + art + " sports:"
+                + sports + " music:" + music);
+
+            System.out.println("Likes");
+            ArrayList<Participant> like = song.getList("like");
+            ArrayList<Participant> noLike = song.getList("nolike");
+            int likeRead = song.getHobbyCount(like, Hobby.READING);
+            int likeArt = song.getHobbyCount(like, Hobby.ART);
+            int likeSports = song.getHobbyCount(like, Hobby.SPORTS);
+            int likeMusic = song.getHobbyCount(like, Hobby.MUSIC);
+
+            int noLikeRead = song.getHobbyCount(noLike, Hobby.READING);
+            int noLikeArt = song.getHobbyCount(noLike, Hobby.ART);
+            int noLikeSport = song.getHobbyCount(noLike, Hobby.SPORTS);
+            int noLikeMusic = song.getHobbyCount(noLike, Hobby.MUSIC);
+
+            likeRead = doMath(likeRead, noLikeRead);
+            likeArt = doMath(likeArt, noLikeArt);
+            likeSports = doMath(likeSports, noLikeSport);
+            likeMusic = doMath(likeMusic, noLikeMusic);
+            System.out.println("reading:" + likeRead + " art:" + likeArt
+                + " sports:" + likeSports + " music:" + likeMusic);
+            System.out.println();
+        }
     }
 
 
+    private static int doMath(int x, int y)
+    {
+        if (x == 0)
+        {
+            return 0;
+        }
+        else
+        {
+            return x * 100 / (x + y);
+        }
+    }
+
+
+    /**
+     * This method
+     */
     private static void makeAndAdd()
     {
         Participant part = null;
@@ -92,40 +182,32 @@ public class Scan
         try
         {
             read.useDelimiter(COMMA_DELIMITER);
-            read.next(); // participant number
-            read.next(); // date
-            Major major = convertMajor(read.next()); // major
-            State state = convertState(read.next()); // state
-            Hobby hobby = convertHobby(read.next()); // hobby
-            part = new Participant(major, state, hobby); // make the current
-                                                         // participant
+            read.next();
+            read.next();
+            Major major = convertMajor(read.next());
+            State state = convertState(read.next());
+            Hobby hobby = convertHobby(read.next());
+            part = new Participant(major, state, hobby);
 
-            if (part.isValid()) // if the participant is valid
+            if (part.isValid())
             {
 
-                int count = 0; // start at answer 0
-                while (read.hasNext()) // while there is stuff to read
+                int count = 0;
+                while (read.hasNext())
                 {
-                    String one = read.next(); // yes, no, or blank
+                    String one = read.next();
                     part.setResponse(one);
-                    Song song = array.get(count / 2); // starts at song 0
-
-                    ArrayList<Participant> heard = song.getList("heard"); // reference
-                                                                          // the
-                                                                          // lists
+                    Song song = array.get(count / 2);
+                    // reference song lists.
+                    ArrayList<Participant> heard = song.getList("heard");
                     ArrayList<Participant> like = song.getList("like");
 
-                    ArrayList<Participant> noheard = song.getList("noheard");
-                    ArrayList<Participant> nolike = song.getList("nolike");
-                    if (one.equals("Yes")) // if the tally
-                                           // is a yes, a
-                                           // participant
-                                           // WILL be added
-                                           // to a list
+                    ArrayList<Participant> noHeard = song.getList("noheard");
+                    ArrayList<Participant> noLike = song.getList("nolike");
+                    if (one.equals("Yes"))// used for yes entry count
                     {
 
-                        if (count % 2 == 0) // if the count is even, the list is
-                                            // heard.
+                        if (count % 2 == 0)
                         {
                             song.addToList(heard, part);
                         }
@@ -134,16 +216,15 @@ public class Scan
                             song.addToList(like, part);
                         }
                     }
-                    if (one.equals("No"))
+                    if (one.equals("No"))// used for total count
                     {
-                        if (count % 2 == 0) // if the count is even, the list is
-                        // heard.
+                        if (count % 2 == 0)
                         {
-                            song.addToList(noheard, part);
+                            song.addToList(noHeard, part);
                         }
                         else
                         {
-                            song.addToList(nolike, part);
+                            song.addToList(noLike, part);
                         }
                     }
                     count++;
@@ -158,6 +239,14 @@ public class Scan
     }
 
 
+    /**
+     * Just converts what is read in from the scanner, String,
+     * to the appropriate enumeration value for Hobby.
+     * 
+     * @param text
+     *            the String read in from scanner.
+     * @return the enumeration value of Hobby.
+     */
     private static Hobby convertHobby(String text)
     {
         switch (text)
@@ -176,6 +265,14 @@ public class Scan
     }
 
 
+    /**
+     * Just converts what is read in from the scanner, String,
+     * to the appropriate enumeration value for Major.
+     * 
+     * @param text
+     *            the String read in from scanner.
+     * @return the enumeration value of Major.
+     */
     private static Major convertMajor(String text)
     {
         switch (text)
@@ -194,6 +291,14 @@ public class Scan
     }
 
 
+    /**
+     * Just converts what is read in from the scanner, String,
+     * to the appropriate enumeration value for State.
+     * 
+     * @param text
+     *            the String read in from scanner.
+     * @return the enumeration value of State.
+     */
     private static State convertState(String text)
     {
         switch (text)
@@ -212,20 +317,23 @@ public class Scan
     }
 
 
+    /**
+     * Helper function used to make a song object to add to a list.
+     * 
+     * @return Song the song made.
+     */
     private static Song makeSong()
     {
         Song song = null;
-        String line = test();
+        String line = scanner.nextLine();
         Scanner data = new Scanner(line);
         try
         {
-
             data.useDelimiter(COMMA_DELIMITER);
             String name = null;
             String artist = null;
             int year = 0;
             String genre = null;
-
             while (data.hasNext())
             {
                 name = data.next();
@@ -240,7 +348,6 @@ public class Scan
             data.close();
         }
         return song;
-
     }
 
 
@@ -249,11 +356,10 @@ public class Scan
      * Then sorts the array based on a switch case within the comparator.
      * 
      * @param sort
+     *            this is the way in which to sort the list.
+     * @return ArrayList<Song> this is the updated and sorted list.
      */
-    public static ArrayList<Song> sortedList(SongSorting sort)// depends on if
-                                                              // the buttons
-                                                              // will call this
-                                                              // or not.
+    public static ArrayList<Song> sortedList(SongSorting sort)
     {
         MyComparator c = new MyComparator(sort);
         ArrayList<Song> sorted = array;
