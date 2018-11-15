@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,7 +12,7 @@ import java.util.Scanner;
  * @author Team 54
  * @version 2018.11.15
  */
-public class Scan
+public class Input
 {
     private static final String COMMA_DELIMITER = ",";
 
@@ -38,8 +38,8 @@ public class Scan
         array = new ArrayList<Song>();
         try
         {
-            scanner = new Scanner(new File(args[0]));
-            data = new Scanner(new File(args[1]));
+            scanner = new Scanner(new File(args[1]));
+            data = new Scanner(new File(args[0]));
             scanner.nextLine();
             data.nextLine();
             while (scanner.hasNextLine())
@@ -73,7 +73,7 @@ public class Scan
      */
     public static void sortByGenre()
     {
-        ArrayList<Song> genre = sortedList(SongSorting.GENRE);
+        ArrayList<Song> genre = sortedList(SongSortingEnum.GENRE);
         for (int i = 0; i < genre.size(); i++)
         {
             Song song = genre.get(i); // reference the current song
@@ -84,14 +84,14 @@ public class Scan
             System.out.println("Heard");
             ArrayList<Participant> heard = song.getList("heard");
             ArrayList<Participant> noHeard = song.getList("noheard");
-            int reading = song.getHobbyCount(heard, Hobby.READING);
-            int art = song.getHobbyCount(heard, Hobby.ART);
-            int sports = song.getHobbyCount(heard, Hobby.SPORTS);
-            int music = song.getHobbyCount(heard, Hobby.MUSIC);
-            int noHeardRead = song.getHobbyCount(noHeard, Hobby.READING);
-            int noHeardArt = song.getHobbyCount(noHeard, Hobby.ART);
-            int noHeardSport = song.getHobbyCount(noHeard, Hobby.SPORTS);
-            int noHeardMusic = song.getHobbyCount(noHeard, Hobby.MUSIC);
+            int reading = song.getHobbyCount(heard, HobbyEnum.READING);
+            int art = song.getHobbyCount(heard, HobbyEnum.ART);
+            int sports = song.getHobbyCount(heard, HobbyEnum.SPORTS);
+            int music = song.getHobbyCount(heard, HobbyEnum.MUSIC);
+            int noHeardRead = song.getHobbyCount(noHeard, HobbyEnum.READING);
+            int noHeardArt = song.getHobbyCount(noHeard, HobbyEnum.ART);
+            int noHeardSport = song.getHobbyCount(noHeard, HobbyEnum.SPORTS);
+            int noHeardMusic = song.getHobbyCount(noHeard, HobbyEnum.MUSIC);
 
             reading = doMath(reading, noHeardRead);
             art = doMath(art, noHeardArt);
@@ -104,15 +104,15 @@ public class Scan
             System.out.println("Likes");
             ArrayList<Participant> like = song.getList("like");
             ArrayList<Participant> noLike = song.getList("nolike");
-            int likeRead = song.getHobbyCount(like, Hobby.READING);
-            int likeArt = song.getHobbyCount(like, Hobby.ART);
-            int likeSports = song.getHobbyCount(like, Hobby.SPORTS);
-            int likeMusic = song.getHobbyCount(like, Hobby.MUSIC);
+            int likeRead = song.getHobbyCount(like, HobbyEnum.READING);
+            int likeArt = song.getHobbyCount(like, HobbyEnum.ART);
+            int likeSports = song.getHobbyCount(like, HobbyEnum.SPORTS);
+            int likeMusic = song.getHobbyCount(like, HobbyEnum.MUSIC);
 
-            int noLikeRead = song.getHobbyCount(noLike, Hobby.READING);
-            int noLikeArt = song.getHobbyCount(noLike, Hobby.ART);
-            int noLikeSport = song.getHobbyCount(noLike, Hobby.SPORTS);
-            int noLikeMusic = song.getHobbyCount(noLike, Hobby.MUSIC);
+            int noLikeRead = song.getHobbyCount(noLike, HobbyEnum.READING);
+            int noLikeArt = song.getHobbyCount(noLike, HobbyEnum.ART);
+            int noLikeSport = song.getHobbyCount(noLike, HobbyEnum.SPORTS);
+            int noLikeMusic = song.getHobbyCount(noLike, HobbyEnum.MUSIC);
 
             likeRead = doMath(likeRead, noLikeRead);
             likeArt = doMath(likeArt, noLikeArt);
@@ -132,7 +132,7 @@ public class Scan
      */
     public static void sortByTitle()
     {
-        ArrayList<Song> title = sortedList(SongSorting.TITLE);
+        ArrayList<Song> title = sortedList(SongSortingEnum.TITLE);
         for (int i = 0; i < title.size(); i++)
         {
             Song song = title.get(i);
@@ -143,14 +143,14 @@ public class Scan
             System.out.println("Heard");
             ArrayList<Participant> heard = song.getList("heard");
             ArrayList<Participant> noHeard = song.getList("noheard");
-            int reading = song.getHobbyCount(heard, Hobby.READING);
-            int art = song.getHobbyCount(heard, Hobby.ART);
-            int sports = song.getHobbyCount(heard, Hobby.SPORTS);
-            int music = song.getHobbyCount(heard, Hobby.MUSIC);
-            int noHeardRead = song.getHobbyCount(noHeard, Hobby.READING);
-            int noHeardArt = song.getHobbyCount(noHeard, Hobby.ART);
-            int noHeardSport = song.getHobbyCount(noHeard, Hobby.SPORTS);
-            int noHeardMusic = song.getHobbyCount(noHeard, Hobby.MUSIC);
+            int reading = song.getHobbyCount(heard, HobbyEnum.READING);
+            int art = song.getHobbyCount(heard, HobbyEnum.ART);
+            int sports = song.getHobbyCount(heard, HobbyEnum.SPORTS);
+            int music = song.getHobbyCount(heard, HobbyEnum.MUSIC);
+            int noHeardRead = song.getHobbyCount(noHeard, HobbyEnum.READING);
+            int noHeardArt = song.getHobbyCount(noHeard, HobbyEnum.ART);
+            int noHeardSport = song.getHobbyCount(noHeard, HobbyEnum.SPORTS);
+            int noHeardMusic = song.getHobbyCount(noHeard, HobbyEnum.MUSIC);
 
             reading = doMath(reading, noHeardRead);
             art = doMath(art, noHeardArt);
@@ -163,15 +163,15 @@ public class Scan
             System.out.println("Likes");
             ArrayList<Participant> like = song.getList("like");
             ArrayList<Participant> noLike = song.getList("nolike");
-            int likeRead = song.getHobbyCount(like, Hobby.READING);
-            int likeArt = song.getHobbyCount(like, Hobby.ART);
-            int likeSports = song.getHobbyCount(like, Hobby.SPORTS);
-            int likeMusic = song.getHobbyCount(like, Hobby.MUSIC);
+            int likeRead = song.getHobbyCount(like, HobbyEnum.READING);
+            int likeArt = song.getHobbyCount(like, HobbyEnum.ART);
+            int likeSports = song.getHobbyCount(like, HobbyEnum.SPORTS);
+            int likeMusic = song.getHobbyCount(like, HobbyEnum.MUSIC);
 
-            int noLikeRead = song.getHobbyCount(noLike, Hobby.READING);
-            int noLikeArt = song.getHobbyCount(noLike, Hobby.ART);
-            int noLikeSport = song.getHobbyCount(noLike, Hobby.SPORTS);
-            int noLikeMusic = song.getHobbyCount(noLike, Hobby.MUSIC);
+            int noLikeRead = song.getHobbyCount(noLike, HobbyEnum.READING);
+            int noLikeArt = song.getHobbyCount(noLike, HobbyEnum.ART);
+            int noLikeSport = song.getHobbyCount(noLike, HobbyEnum.SPORTS);
+            int noLikeMusic = song.getHobbyCount(noLike, HobbyEnum.MUSIC);
 
             likeRead = doMath(likeRead, noLikeRead);
             likeArt = doMath(likeArt, noLikeArt);
@@ -223,9 +223,9 @@ public class Scan
             read.useDelimiter(COMMA_DELIMITER);
             read.next();
             read.next();
-            Major major = convertMajor(read.next());
-            State state = convertState(read.next());
-            Hobby hobby = convertHobby(read.next());
+            MajorEnum major = convertMajor(read.next());
+            StateEnum state = convertState(read.next());
+            HobbyEnum hobby = convertHobby(read.next());
             part = new Participant(major, state, hobby);
 
             if (part.isValid())
@@ -285,18 +285,18 @@ public class Scan
      *            the String read in from scanner.
      * @return the enumeration value of Hobby.
      */
-    public static Hobby convertHobby(String text)
+    public static HobbyEnum convertHobby(String text)
     {
         switch (text)
         {
             case "sports":
-                return Hobby.SPORTS;
+                return HobbyEnum.SPORTS;
             case "art":
-                return Hobby.ART;
+                return HobbyEnum.ART;
             case "music":
-                return Hobby.MUSIC;
+                return HobbyEnum.MUSIC;
             case "reading":
-                return Hobby.READING;
+                return HobbyEnum.READING;
             default:
                 return null;
         }
@@ -311,18 +311,18 @@ public class Scan
      *            the String read in from scanner.
      * @return the enumeration value of Major.
      */
-    private static Major convertMajor(String text)
+    private static MajorEnum convertMajor(String text)
     {
         switch (text)
         {
             case "Computer Science":
-                return Major.CS;
+                return MajorEnum.CS;
             case "Other Engineering":
-                return Major.ENGINEER;
+                return MajorEnum.ENGINEER;
             case "Math or CMDA":
-                return Major.MATH;
+                return MajorEnum.MATH;
             case "Other":
-                return Major.OTHER;
+                return MajorEnum.OTHER;
             default:
                 return null;
         }
@@ -337,18 +337,18 @@ public class Scan
      *            the String read in from scanner.
      * @return the enumeration value of State.
      */
-    private static State convertState(String text)
+    private static StateEnum convertState(String text)
     {
         switch (text)
         {
             case "Northeast":
-                return State.NE;
+                return StateEnum.NE;
             case "Outside of United States":
-                return State.OUT;
+                return StateEnum.OUT;
             case "United States (other than Southeast or Northwest)":
-                return State.REST;
+                return StateEnum.REST;
             case "Southeast":
-                return State.SE;
+                return StateEnum.SE;
             default:
                 return null;
         }
@@ -397,9 +397,9 @@ public class Scan
      *            this is the way in which to sort the list.
      * @return ArrayList<Song> this is the updated and sorted list.
      */
-    private static ArrayList<Song> sortedList(SongSorting sort)
+    private static ArrayList<Song> sortedList(SongSortingEnum sort)
     {
-        MyComparator c = new MyComparator(sort);
+        SongComparator c = new SongComparator(sort);
         ArrayList<Song> sorted = array;
         sorted.sort(c);
         return sorted;
