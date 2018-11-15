@@ -1,0 +1,66 @@
+package prj5;
+import student.TestCase;
+
+
+/**
+ * The test class for my skills class.
+ * Testing if all the methods in skills works
+ * as it should
+ * 
+ * @author Alyssa Farrell
+ * @version November 15, 2018
+ *
+ */
+public class ParticipantTest extends TestCase
+{
+    private Participant p;
+    private Input hobby;
+    private Input state;
+    private Input major;
+    
+    /**
+     * Setting the Participant class up for 
+     * testing
+     */
+    public void setUp()
+    {
+        p = new Participant(SPORTS, NE, CS);
+        hobby = p.getHobby(Hobby.SPORTS);
+        state = p.getState(State.NE);
+        major = p.getMajor(Major.CS);
+    }
+    
+    /**
+     * Testing the getHobby method,
+     * which ultimately returns the 
+     * hobby of the Participant
+     */
+     public void testGetHobby()
+     {
+        Hobby h = Hobby.SPORTS;
+        assertTrue(hobby, p.getHobby(hobby));
+     }
+    
+    /**
+     * Testing the getState method,
+     * which should return the 
+     * state of the Participant
+     */
+     public void testGetHobby()
+     {
+        State s = State.NE;
+        assertTrue(state, p.getState(state));
+     }
+     
+     /**
+     * Testing the getMajor method,
+     * which should return the 
+     * major of the Participant
+     */
+     public void testGetHobby()
+     {
+        Major m = Hobby.CS;
+        assertTrue(major, p.getMajor(major));
+     }
+     
+}
