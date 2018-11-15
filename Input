@@ -5,7 +5,14 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Input
+/**
+ * This is the Input class which reads data from files
+ * passed to main() and sorts the lists created.
+ * 
+ * @author Team 54
+ * @version 2018.11.15
+ */
+public class Scan
 {
     private static final String COMMA_DELIMITER = ",";
 
@@ -14,18 +21,30 @@ public class Input
     private static Scanner data;
 
 
+    /**
+     * This is the main method for this program which
+     * takes in file names from args and reads a list
+     * of songs and the survey data then outputs the sorted
+     * list based on a given command (in this case genre then
+     * title) and the count of responses based on the hobby
+     * of the participants.
+     * 
+     * @param args
+     *            this is the array of strings that contain
+     *            the filenames.
+     */
     public static void main(String args[])
     {
         array = new ArrayList<Song>();
         try
         {
-            scanner = new Scanner(new File("SongListTest1.csv"));
-            data = new Scanner(new File("MusicSurveyDataTest1.csv"));
-            scanner.nextLine(); // also skips banner
+            scanner = new Scanner(new File(args[0]));
+            data = new Scanner(new File(args[1]));
+            scanner.nextLine();
             data.nextLine();
             while (scanner.hasNextLine())
             {
-                array.add(makeSong()); // adds songs to arrayList.
+                array.add(makeSong());
             }
             while (data.hasNextLine())
             {
@@ -44,12 +63,14 @@ public class Input
         }
         sortByGenre();
         sortByTitle();
-        // This point on is not permanent and will change as progress continues
-        // to reflect the implementation of buttons and so on.
-
     }
 
 
+    /**
+     * Outputs the console based string representation of the list of
+     * songs sorted by genre along with the tally of yes responses
+     * out of total responses.
+     */
     public static void sortByGenre()
     {
         ArrayList<Song> genre = sortedList(SongSorting.GENRE);
@@ -104,12 +125,17 @@ public class Input
     }
 
 
+    /**
+     * Outputs a console based string representation of the list of songs
+     * sorted by title along with the tally of yes responses out of total
+     * responses.
+     */
     public static void sortByTitle()
     {
         ArrayList<Song> title = sortedList(SongSorting.TITLE);
         for (int i = 0; i < title.size(); i++)
         {
-            Song song = title.get(i); // reference the current song
+            Song song = title.get(i);
             System.out.println("Song Title: " + song.getTitle());
             System.out.println("Song Artist: " + song.getArtist());
             System.out.println("Song Genre: " + song.getGenre());
@@ -158,6 +184,17 @@ public class Input
     }
 
 
+    /**
+     * This method returns the percentage of responses
+     * using this formula: x * 100 / x + y, where x is yes's
+     * and y is no's if x is not zero.
+     * 
+     * @param x
+     *            the number of yes responses.
+     * @param y
+     *            the number of no responses.
+     * @return the percentage of yes's out of total responses.
+     */
     private static int doMath(int x, int y)
     {
         if (x == 0)
@@ -172,7 +209,9 @@ public class Input
 
 
     /**
-     * This method
+     * This method creates and adds participants to the heard,
+     * liked, noHeard, and noLike lists based on the validity
+     * and response of the Participant created.
      */
     private static void makeAndAdd()
     {
@@ -194,42 +233,41 @@ public class Input
 
                 int count = 0;
                 while (read.hasNext())
-                {
+                { // reads through the line for responses.
                     String one = read.next();
                     part.setResponse(one);
+                    // half of count is used since every 2 responses = 1 song.
                     Song song = array.get(count / 2);
-                    // reference song lists.
+                    // reference this Song's lists for easier access.
                     ArrayList<Participant> heard = song.getList("heard");
                     ArrayList<Participant> like = song.getList("like");
-
                     ArrayList<Participant> noHeard = song.getList("noheard");
                     ArrayList<Participant> noLike = song.getList("nolike");
-                    if (one.equals("Yes"))// used for yes entry count
-                    {
 
+                    if (one.equals("Yes"))
+                    { // adds to heard/like list.
                         if (count % 2 == 0)
-                        {
+                        { // heard list since even.
                             song.addToList(heard, part);
                         }
                         else
-                        {
+                        { // like list since odd.
                             song.addToList(like, part);
                         }
                     }
-                    if (one.equals("No"))// used for total count
-                    {
+                    if (one.equals("No"))
+                    { // adds to noHeard/noLike list.
                         if (count % 2 == 0)
-                        {
+                        { // noHeard since even.
                             song.addToList(noHeard, part);
                         }
                         else
-                        {
+                        { // noLike since odd.
                             song.addToList(noLike, part);
                         }
                     }
                     count++;
                 }
-
             }
         }
         finally
@@ -247,7 +285,7 @@ public class Input
      *            the String read in from scanner.
      * @return the enumeration value of Hobby.
      */
-    private static Hobby convertHobby(String text)
+    public static Hobby convertHobby(String text)
     {
         switch (text)
         {
@@ -359,7 +397,7 @@ public class Input
      *            this is the way in which to sort the list.
      * @return ArrayList<Song> this is the updated and sorted list.
      */
-    public static ArrayList<Song> sortedList(SongSorting sort)
+    private static ArrayList<Song> sortedList(SongSorting sort)
     {
         MyComparator c = new MyComparator(sort);
         ArrayList<Song> sorted = array;
