@@ -1,0 +1,126 @@
+package prj5;
+import student.TestCase;
+
+
+/**
+ * The test class for the song class.
+ * Testing to see if all the methods
+ * are implemented correctly
+ * 
+ * @author Alyssa Farrell
+ * @version November 15, 2018
+ *
+ */
+public class SongTest extends TestCase
+{
+  private Song song;
+  /**
+   * Setting the class up for testing the
+   * different methods
+   */
+  public void setUp()
+  {
+      song = new Song("Fireball", "Pitbull", 2014, "Pop"); 
+  }
+  
+  /**
+   * Simple getter method to get the song title
+   */
+   public void testGetTitle()
+   {
+      assertEquals("Fireball", song.getTitle());
+   }
+   
+   /**
+   * Simple getter method to get the song artist
+   */
+   public void testGetArtist()
+   {
+      assertEquals("Pitbull", song.getArtist());
+   }
+   
+   /**
+   * Simple getter method to get the song year
+   */
+   public void testGetYear()
+   {
+      assertEquals(2014, song.getYear());
+   }
+   
+   /**
+   * Simple getter method to get the song genre
+   */
+   public void testGetGenre()
+   {
+      assertEquals("Pop", song.getGenre());
+   }
+   
+   /**
+    * Converting everything to a string for output
+    */
+    public void testToString()
+    {
+       assertEquals("Title: Fireball,
+                     Artist: Pitbull,
+                     Year: 2014,
+                     Genre: Pop", song.toString());
+    }
+    
+    /**
+     *  Testing the add to list method by
+     *  adding to the list
+     */
+     public void testAddToList()
+     {
+          ArrayList<Participant> list = // DONT KNOW WHAT TO PUT HERE
+          Participant p = new Participant(CS, NE, SPORTS);
+          song.AddToList(list, P);
+          
+          // NEED ASSERTION METHOD, UNCLEAR, TIRED, 10:47 :( alysssa needs sleeeep
+     }
+     
+     /**
+     *  Testing the getHobbyCount
+     */
+     public void testAddToList()
+     {
+          Hobby h = Hobby.SPORTS;
+          ArrayList<Participant> list = ???? (prob add the one participant now that im looking)
+          assertEquals(1, song.getHobbyCount(list, h));
+     }
+     
+     /**
+     *  Testing the getStateCount method
+     */
+     public void testGetStateCount()
+     {
+          Hobby h = Hobby.NE;
+          ArrayList<Participant> list = ???? (prob add the one participant now that im looking)
+          assertEquals(1, song.getStateCount(list, h));
+     }
+     
+     /**
+     *  Testing the getStateCount method
+     */
+     public void testGetMajorCount()
+     {
+          Hobby h = Hobby.CS;
+          ArrayList<Participant> list = ???? (prob add the one participant now that im looking)
+          assertEquals(1, song.getMajorCount(list, h));
+     }
+     
+     /**
+     *  Testing the getList method
+     */
+     public void testGetList()
+     {
+          String listName = "list";
+          
+          assertNull(song.getList()); 
+          // asserts Null because no list
+     }
+     
+     // Need more tests here for getList and the getHobby Count since they have multiple ifs and stuff 
+     
+     
+}
