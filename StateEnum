@@ -1,14 +1,14 @@
-package project5;
+package prj5;
 
 /**
  * This enumeration represents the participant's
  * state with the values NE for Northeast US,
  * SE for Southeast US, REST for rest of US,
  * and OUT for out of US.
- * @author Dillon Jenkins (djj2148)
- * @version 2018.11.10
+ * @author Team 54
+ * @version 2018.11.15
  */
-public enum State
+public enum StateEnum
 {
     NE, SE, REST, OUT;
 }
