@@ -1,66 +1,106 @@
 package prj5;
-import student.TestCase;
 
+import student.TestCase;
 
 /**
  * The test class for my skills class.
  * Testing if all the methods in skills works
  * as it should
  * 
- * @author Alyssa Farrell
- * @version November 15, 2018
+ * @author Team 54
+ * @version 2018.11.15
  *
  */
 public class ParticipantTest extends TestCase
 {
     private Participant p;
-    private Input hobby;
-    private Input state;
-    private Input major;
-    
+    private Participant noMajor;
+    private Participant noState;
+    private Participant noHobby;
+
+
     /**
-     * Setting the Participant class up for 
+     * Setting the Participant class up for
      * testing
      */
     public void setUp()
     {
-        p = new Participant(SPORTS, NE, CS);
-        hobby = p.getHobby(Hobby.SPORTS);
-        state = p.getState(State.NE);
-        major = p.getMajor(Major.CS);
+        p = new Participant(MajorEnum.CS, StateEnum.NE, HobbyEnum.SPORTS);
+        noMajor = new Participant(null, StateEnum.NE, HobbyEnum.SPORTS);
+        noState = new Participant(MajorEnum.CS, null, HobbyEnum.SPORTS);
+        noHobby = new Participant(MajorEnum.CS, StateEnum.NE, null);
     }
-    
+
+
     /**
      * Testing the getHobby method,
-     * which ultimately returns the 
+     * which ultimately returns the
      * hobby of the Participant
      */
-     public void testGetHobby()
-     {
-        Hobby h = Hobby.SPORTS;
-        assertTrue(hobby, p.getHobby(hobby));
-     }
-    
+    public void testGetHobby()
+    {
+        HobbyEnum h = HobbyEnum.SPORTS;
+        assertEquals(h, p.getHobby());
+    }
+
+
     /**
      * Testing the getState method,
-     * which should return the 
+     * which should return the
      * state of the Participant
      */
-     public void testGetHobby()
-     {
-        State s = State.NE;
-        assertTrue(state, p.getState(state));
-     }
-     
-     /**
+    public void testGetState()
+    {
+        StateEnum s = StateEnum.NE;
+        assertEquals(s, p.getState());
+    }
+
+
+    /**
      * Testing the getMajor method,
-     * which should return the 
+     * which should return the
      * major of the Participant
      */
-     public void testGetHobby()
-     {
-        Major m = Hobby.CS;
-        assertTrue(major, p.getMajor(major));
-     }
-     
+    public void testGetMajor()
+    {
+        MajorEnum m = MajorEnum.CS;
+        assertEquals(m, p.getMajor());
+    }
+
+
+    /**
+     * Tests is valid to check that
+     * the participant has a non null
+     * value for each field.
+     */
+    public void testIsValid()
+    {
+        assertTrue(p.isValid());
+        assertFalse(noMajor.isValid());
+        assertFalse(noState.isValid());
+        assertFalse(noHobby.isValid());
+    }
+
+    /**
+     * Tests setResponse to change the response
+     * saved.
+     */
+    public void testSetResponse()
+    {
+        p.setResponse("Yes");
+        assertEquals(p.getResponse(), "Yes");
+        p.setResponse("No");
+        assertEquals(p.getResponse(), "No");
+    }
+
+    /**
+     * Tests getResponse to return the current
+     * response value.
+     */
+    public void testGetResponse()
+    {
+        p.setResponse("No");
+        assertEquals(p.getResponse(), "No");
+    }
+
 }
