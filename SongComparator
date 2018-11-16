@@ -1,4 +1,4 @@
-package project5;
+package prj5;
 
 import java.util.Comparator;
 
@@ -6,13 +6,14 @@ import java.util.Comparator;
  * This class represents a Comparator that
  * is made specifically for comparing Song objects.
  * 
- * @author Dillon Jenkins (djj2148)
- * @version 2018.11.10
+ * @author Team 54
+ * @version 2018.11.15
  */
-public class MyComparator implements Comparator<Song> 
+public class SongComparator implements Comparator<Song>
 {
     // Enumeration of the values saved in the Song class
-    private SongSorting sort;
+    private SongSortingEnum sort;
+
 
     /**
      * Default constructor for SongComparator that takes the parameter
@@ -23,43 +24,46 @@ public class MyComparator implements Comparator<Song>
      *            - this is the enumeration of the songs value
      *            to be sorted.
      */
-    public MyComparator(SongSorting sort) 
+    public SongComparator(SongSortingEnum sort)
     {
         this.sort = sort;
     }
+
 
     /**
      * This method makes the comparison of two songs by using the
      * field saved parameter and two songs passed as parameters for
      * this method.
+     * 
      * @param song1
-     *              this is the first song.
+     *            this is the first song.
      * @param song2
-     *              this is the second song.
-     * @return int 
-     *              this is the int value that is representative of
-     *              the comparison.
+     *            this is the second song.
+     * @return int
+     *         this is the int value that is representative of
+     *         the comparison.
      */
     @Override
-    public int compare(Song song1, Song song2) 
+    public int compare(Song song1, Song song2)
     {
 
-        switch (sort) 
+        switch (sort)
         {
             case TITLE:
                 return (song1.getTitle().compareToIgnoreCase(song2.getTitle()));
             case ARTIST:
-                return (song1.getArtist().compareToIgnoreCase(song2.getArtist()));
+                return (song1.getArtist().compareToIgnoreCase(song2
+                    .getArtist()));
             case YEAR:
-                if (song1.getYear() > song2.getYear()) 
+                if (song1.getYear() > song2.getYear())
                 {
                     return 1;
                 }
-                if (song1.getYear() < song2.getYear()) 
+                if (song1.getYear() < song2.getYear())
                 {
                     return -1;
                 }
-                else 
+                else
                 {
                     return 0;
                 }
