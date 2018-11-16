@@ -1,52 +1,104 @@
-package prj5; 
+package prj5;
 
 /**
-*Represents a student's entry from the survey data.
-**/
+ * Represents a student's entry from the survey data.
+ * 
+ * @author Team 54
+ * @version 2018.11.15
+ */
 public class Participant
 {
-    private Hobby hobby; //enum of hobby assigned to this participant
-    private Major major; //enum of major assigned to this participant
-    private State state; //enum of state assigned to this participant
-    
+    private HobbyEnum hobby;
+    private MajorEnum major;
+    private StateEnum state;
+
+    private String response;
+
+
     /**
-    *Default constrcutor for the participant class.
-    *@param major - this is the major of the participant.
-    *@param state - this is the state of the participant.
-    *@param hobby - this is the hobby of the participant.
-    **/
-    public Participant(Major major, State state, Hobby hobby)
+     * Default constructor for the participant class.
+     * 
+     * @param major
+     *            - this is the major of the participant.
+     * @param state
+     *            - this is the state of the participant.
+     * @param hobby
+     *            - this is the hobby of the participant.
+     */
+    public Participant(MajorEnum major, StateEnum state, HobbyEnum hobby)
     {
         this.major = major;
         this.state = state;
         this.hobby = hobby;
+        response = null;
     }
-    
+
+
     /**
-    *Gets this participant's hobby value
-    *@return hobby - the hobby of this participant.
-    **/
-    public Hobby getHobby()
+     * Gets this participant's hobby value
+     * 
+     * @return hobby - the hobby of this participant.
+     */
+    public HobbyEnum getHobby()
     {
         return hobby;
     }
-    
+
+
     /**
-    *Gets this participant's state value
-    *@return state - the state of this participant.
-    **/
-    public State getState()
+     * Gets this participant's state value
+     * 
+     * @return state - the state of this participant.
+     */
+    public StateEnum getState()
     {
         return state;
     }
-    
+
+
     /**
-    *Gets this participant's major value
-    *@return hobby - the major of this participant.
-    **/
-    public Major getMajor()
+     * Gets this participant's major value
+     * 
+     * @return major - the major of this participant.
+     */
+    public MajorEnum getMajor()
     {
         return major;
     }
-    
+
+
+    /**
+     * Checks to see if all fields are filled
+     * 
+     * @return true if all fields are not null.
+     */
+    public boolean isValid()
+    {
+        return major != null && state != null && hobby != null;
+    }
+
+
+    /**
+     * Sets the response of this participant to the given
+     * string.
+     * 
+     * @param string
+     *            the response to be set.
+     */
+    public void setResponse(String string)
+    {
+        response = string;
+    }
+
+
+    /**
+     * Returns the current response of this participant.
+     * 
+     * @return the response.
+     */
+    public String getResponse()
+    {
+        return response;
+    }
+
 }
