@@ -1,13 +1,13 @@
-package project5;
+package prj5;
 
 /**
  * This is the enumeration of the participant's
  * it only contains the values SPORTS, 
  * READING, MUSIC, and ART.
- * @author Dillon Jenkins
- * @version 2018.11.10
+ * @author Team 54
+ * @version 2018.11.15
  */
-public enum Hobby
+public enum HobbyEnum
 {
     SPORTS, READING, MUSIC, ART;
 }
