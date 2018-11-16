@@ -1,14 +1,15 @@
-package project5;
+package prj5;
 
 import java.util.ArrayList;
+
 
 /**
  * This class represents the song as an object to be
  * stored and sorted with the fields: title, artist,
  * year, and genre.
  * 
- * @author Dillon Jenkins (djj2148)
- * @version 2018.11.10
+ * @author Team 54
+ * @version 2018.11.15
  */
 public class Song
 {
@@ -150,12 +151,12 @@ public class Song
      *         this is the number of participants that share the hobby
      *         enumeration passed to this method.
      */
-    public int getHobbyCount(ArrayList<Participant> list, Hobby hobby)
+    public int getHobbyCount(ArrayList<Participant> list, HobbyEnum hobby)
     {
         int count = 0; // starts at zero
         for (int i = 0; i < list.size(); i++)
         {
-            Hobby check = list.get(i).getHobby();
+            HobbyEnum check = list.get(i).getHobby();
 
             if (check == hobby)
             {
@@ -188,7 +189,7 @@ public class Song
      *         this is the number of participants that share the State
      *         enumeration passed to this method.
      */
-    public int getStateCount(ArrayList<Participant> list, State state)
+    public int getStateCount(ArrayList<Participant> list, StateEnum state)
     {
         int count = 0;
         for (int i = 0; i < list.size(); i++)
@@ -216,7 +217,7 @@ public class Song
      *         this is the number of participants that share the major
      *         enumeration passed to this method.
      */
-    public int getMajorCount(ArrayList<Participant> list, Major major)
+    public int getMajorCount(ArrayList<Participant> list, MajorEnum major)
     {
         int count = 0;
         for (int i = 0; i < list.size(); i++)
