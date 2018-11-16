@@ -1,1 +1,59 @@
-I need to edit this sorry to suprise you
+package prj5;
+
+import student.TestCase;
+
+/**
+ * Tests SongComparator
+ * 
+ * @author Team 54
+ * @version 2018.11.15
+ */
+public class SongComparatorTest extends TestCase
+{
+    private SongComparator title;
+    private SongComparator genre;
+    private SongComparator year;
+    private SongComparator artist;
+    private SongComparator other;
+
+    private Song song1;
+    private Song song2;
+
+
+    /**
+     * Sets up the test case.
+     */
+    public void setUp()
+    {
+        title = new SongComparator(SongSortingEnum.TITLE);
+        genre = new SongComparator(SongSortingEnum.GENRE);
+        year = new SongComparator(SongSortingEnum.YEAR);
+        artist = new SongComparator(SongSortingEnum.ARTIST);
+        other = new SongComparator(SongSortingEnum.OTHER);
+        
+        song1 = new Song("a", "a", 1, "a");
+        song2 = new Song("b", "b", 2, "b");
+    }
+
+
+    /**
+     * Tests compare for each type of comparator.
+     */
+    public void testCompare()
+    {
+        assertEquals(-1, title.compare(song1, song2));
+        assertEquals(1, title.compare(song2, song1));
+        assertEquals(0, title.compare(song1, song1));
+        assertEquals(-1, genre.compare(song1, song2));
+        assertEquals(1, genre.compare(song2, song1));
+        assertEquals(0, genre.compare(song1, song1));
+        assertEquals(-1, year.compare(song1, song2));
+        assertEquals(1, year.compare(song2, song1));
+        assertEquals(0, year.compare(song1, song1));
+        assertEquals(-1, artist.compare(song1, song2));
+        assertEquals(1, artist.compare(song2, song1));
+        assertEquals(0, artist.compare(song1, song1));
+        
+        assertEquals(0, other.compare(song1, song2));
+    }
+}
