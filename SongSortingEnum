@@ -1,0 +1,13 @@
+package prj5;
+
+/**
+ * This enumeration represents the song's
+ * field values as either its TITLE,
+ * ARTIST, YEAR, or GENRE
+ * @author Team 54
+ * @version 2018.11.15
+ */
+public enum SongSortingEnum
+{
+    TITLE, ARTIST, YEAR, GENRE, OTHER;
+}
