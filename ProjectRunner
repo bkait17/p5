@@ -32,6 +32,11 @@ public class ProjectRunner {
      */
     public static void main(String[] args) 
     {
-        SurveyWindow disp = new SurveyWindow();
+        if (args.length == 2)
+        {
+            new input(args[0], args[1]);
+        }
+        
+        new input("input", "song.txt"); //needs changed to the file name
     }
 }
