@@ -131,7 +131,7 @@ package prj5;
             TextShape heard = new TextShape(0, 0, "Head");
             TexShape likes = new TextShape(0, 0, "Likes");
             
-            Shape line = new Shape(10, 100, 15, Color.BLACK);
+            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
             
         }
 
@@ -139,6 +139,22 @@ package prj5;
         {
             textShape.setText(//Needs something in here for major);
             window.repaint();
+            
+            TextShape majorLegend = new TextShape(0, 0, "Major Legend");
+            TextShape enumCS = new TextShape(0, 0, "CS");
+            enumCS.setColor(Color.PINK);
+            TextShape enumEnge = new TextShape(0, 0, "Engineer");
+            enumEnge.setColor(Color.BLUE);
+            TextShape enumMath = new TextShape(0, 0, "Math");
+            enumMath.setColor(Color.YELLOW);
+            TextShape enumOther = new TextShape(0, 0, "Other");
+            enumOther.setColor(Color.GREEN);
+            
+            TextShape songTitle = new TextShape(0, 0, "Song Title");
+            TextShape heard = new TextShape(0, 0, "Head");
+            TexShape likes = new TextShape(0, 0, "Likes");
+            
+            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
         }
 
         publc void clickedState(Button button)
