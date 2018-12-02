@@ -36,7 +36,6 @@ public class ProjectRunner {
         {
             new input(args[0], args[1]);
         }
-        
-        new input("input", "song.txt"); //needs changed to the file name
+        new input("MusicSurveyData2018F.csv", "SongList2018.csv"); 
     }
 }
