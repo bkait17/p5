@@ -4,7 +4,8 @@ package prj5;
  * This is the class designated for SurveyWindow
  * 
  * @author Alyssa Farrell (alyss17)
- * @version November 15, 2018
+ * @author Kaitlyn Baldwin (bkait17)
+ * @version December 2, 2018
  */
  public class SurveyWindow 
  {
