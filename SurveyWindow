@@ -117,7 +117,22 @@ package prj5;
 
         public void clickedHobby(Button button)
         {
-            in.
+            TextShape hobbyLegend = new TextShape(0, 0, "Hobby Legend");
+            TextShape enumRead = new TextShape(0, 0, "Read");
+            enumRead.setColor(Color.PINK);
+            TextShape enumArt = new TextShape(0, 0, "Art");
+            enumArt.setColor(Color.BLUE);
+            TextShape enumSports = new TextShape(0, 0, "Sports");
+            enumSports.setColor(Color.YELLOW);
+            TextShape enumMusic = new TextShape(0, 0, "Music");
+            enumMusic.setColor(Color.GREEN);
+            
+            TextShape songTitle = new TextShape(0, 0, "Song Title");
+            TextShape heard = new TextShape(0, 0, "Head");
+            TexShape likes = new TextShape(0, 0, "Likes");
+            
+            Shape line = new Shape(10, 100, 15, Color.BLACK);
+            
         }
 
         public void clickedMajor(Button button)
