@@ -136,10 +136,7 @@ package prj5;
         }
 
         public void clickedMajor(Button button)
-        {
-            textShape.setText(//Needs something in here for major);
-            window.repaint();
-            
+        {            
             TextShape majorLegend = new TextShape(0, 0, "Major Legend");
             TextShape enumCS = new TextShape(0, 0, "CS");
             enumCS.setColor(Color.PINK);
@@ -159,9 +156,21 @@ package prj5;
 
         publc void clickedState(Button button)
         {
-            in.
-            textShape.setText(//Needs something in here for state);
-            window.repaint();
+            TextShape stateRegion = new TextShape(0, 0, "State Legend");
+            TextShape enumNe = new TextShape(0, 0, "NorthEast");
+            enumNe.setColor(Color.PINK);
+            TextShape enumSe = new TextShape(0, 0, "SouthEast");
+            enumEnge.setColor(Color.BLUE);
+            TextShape enumRest = new TextShape(0, 0, "Rest of US");
+            enumMath.setColor(Color.YELLOW);
+            TextShape enumOut = new TextShape(0, 0, "Outside US");
+            enumOut.setColor(Color.GREEN);
+            
+            TextShape songTitle = new TextShape(0, 0, "Song Title");
+            TextShape heard = new TextShape(0, 0, "Head");
+            TexShape likes = new TextShape(0, 0, "Likes");
+            
+            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
         }
 
         public void clickedQuit(Button button)
