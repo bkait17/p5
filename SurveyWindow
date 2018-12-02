@@ -20,6 +20,8 @@ package prj5;
     private Button major;
     private Button state;
     private Button quitButton;
+    
+    private Input in;
  
     /**
      * Constructor for the window, sets stuff up
@@ -68,6 +70,8 @@ package prj5;
         quitButton.onClick(this, "clickedQuit");
         
         window.setTitle("Song Survey");
+        
+        in = new Input();
         }
         
 
@@ -75,7 +79,7 @@ package prj5;
         {
             this.hide;
             SurveyWindow sw = new SurveyWindow();
-            sm.setVisible(true);
+            sw.setVisible(true);
         }
         
         public void clickedArtist(Button button)
@@ -113,8 +117,7 @@ package prj5;
 
         public void clickedHobby(Button button)
         {
-            textShape.setText(//Needs something in here for hobby);
-            window.repaint();
+            in.
         }
 
         public void clickedMajor(Button button)
@@ -125,6 +128,7 @@ package prj5;
 
         publc void clickedState(Button button)
         {
+            in.
             textShape.setText(//Needs something in here for state);
             window.repaint();
         }
@@ -133,6 +137,10 @@ package prj5;
         {
              System.exit(0);
         }
+        
+        
+        
+        
 }
  
 
