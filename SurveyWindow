@@ -1,14 +1,18 @@
 package prj5;
+import java.awt.Color;
+import CS2114.Button;
+import CS2114.Shape;
+import CS2114.TextShape;
+import CS2114.Window;
+import CS2114.WindowSide;
 
 /**
  * This is the class designated for SurveyWindow
  * 
  * @author Alyssa Farrell (alyss17)
- * @author Kaitlyn Baldwin (bkait17)
- * @version December 2, 2018
+ * @version November 15, 2018
  */
- public class SurveyWindow 
- {
+public class SurveyWindow {
     private Window window;
     private TextShape textShape;
     private Button prevButton;
@@ -21,168 +25,326 @@ package prj5;
     private Button major;
     private Button state;
     private Button quitButton;
-    
-    private Input in;
- 
+    private TextShape legendTitle;
+    private TextShape legend1;
+    private TextShape legend2;
+    private TextShape legend3;
+    private TextShape legend4;
+    private Shape legendBorder;
+
+
     /**
      * Constructor for the window, sets stuff up
      */
-    public SurveyWindow()
-    {
+    public SurveyWindow() {
         window = new Window();
         prevButton = new Button("Prev");
         prevButton.onClick(this, "clickedPrev");
         window.addButton(prevButton, WindowSide.NORTH);
-         
+
         artist = new Button("Sort by Artist");
         window.addButton(artist, WindowSide.NORTH);
         artist.onClick(this, "clickedArtist");
-        
+
         song = new Button("Sort by Song Title");
         window.addButton(song, WindowSide.NORTH);
         song.onClick(this, "clickedSong");
-  
+
         year = new Button("Sort by Release Year");
         window.addButton(year, WindowSide.NORTH);
         year.onClick(this, "clickedYear");
-  
+
         genre = new Button("Sort by Genre");
         window.addButton(genre, WindowSide.NORTH);
         genre.onClick(this, "clickedGenre");
-  
+
         Button next = new Button("Next");
         window.addButton(next, WindowSide.NORTH);
         next.onClick(this, "clickedNext");
-  
+
         hobby = new Button("Represent Hobby");
         window.addButton(hobby, WindowSide.SOUTH);
         hobby.onClick(this, "clickedHobby");
-  
+
         Button major = new Button("Represent Major");
         window.addButton(major, WindowSide.SOUTH);
         major.onClick(this, "clickedMajor");
-  
+
         Button state = new Button("Represent State");
         window.addButton(state, WindowSide.SOUTH);
-        region.onClick(this, "clickedState");
-  
-        quitButton = new Button("Quit")
+        state.onClick(this, "clickedState");
+
+        quitButton = new Button("Quit");
         window.addButton(quitButton, WindowSide.SOUTH);
         quitButton.onClick(this, "clickedQuit");
-        
+
         window.setTitle("Song Survey");
+
+        // Sets up legend
+        setHobbyLegend();
+
+        Shape barGlyph = new Shape(75, 50, 5, 40, Color.BLACK);
+        Shape barGlyph2 = new Shape(75, 145, 5, 40, Color.BLACK);
+        Shape barGlyph3 = new Shape(75, 240, 5, 40, Color.BLACK);
+        Shape barGlyph4 = new Shape(250, 50, 5, 40, Color.BLACK);
+        Shape barGlyph5 = new Shape(250, 145, 5, 40, Color.BLACK);
+        Shape barGlyph6 = new Shape(250, 240, 5, 40, Color.BLACK);
+        Shape barGlyph7 = new Shape(425, 50, 5, 40, Color.BLACK);
+        Shape barGlyph8 = new Shape(425, 145, 5, 40, Color.BLACK);
+        Shape barGlyph9 = new Shape(425, 240, 5, 40, Color.BLACK);
+
+        window.addShape(barGlyph);
+        window.addShape(barGlyph2);
+        window.addShape(barGlyph3);
+        window.addShape(barGlyph4);
+        window.addShape(barGlyph5);
+        window.addShape(barGlyph6);
+        window.addShape(barGlyph7);
+        window.addShape(barGlyph8);
+        window.addShape(barGlyph9);
+    }
+
+
+    public void clickedPrev(Button button) {
+        // left blank
+    }
+
+
+    public void clickedArtist(Button button) {
+        textShape.setText("");
+        window.repaint();
+
+    }
+
+
+    public void clickedSong(Button button) {
+        textShape.setText("");
+        window.repaint();
+    }
+
+
+    public void clickedYear(Button button) {
+        textShape.setText("");
+        window.repaint();
+    }
+
+
+    public void clickedGenre(Button button) {
+        textShape.setText("");
+        window.repaint();
+    }
+
+
+    public void clickedNext(Button button) {
+        // left blank
+    }
+
+
+    public void clickedHobby(Button button) {
+        window.removeAllShapes();
+        setHobbyLegend();
         
-        in = new Input();
-        }
+        Shape barGlyph = new Shape(75, 50, 5, 40, Color.BLACK);
+        Shape barGlyph2 = new Shape(75, 145, 5, 40, Color.BLACK);
+        Shape barGlyph3 = new Shape(75, 240, 5, 40, Color.BLACK);
+        Shape barGlyph4 = new Shape(250, 50, 5, 40, Color.BLACK);
+        Shape barGlyph5 = new Shape(250, 145, 5, 40, Color.BLACK);
+        Shape barGlyph6 = new Shape(250, 240, 5, 40, Color.BLACK);
+        Shape barGlyph7 = new Shape(425, 50, 5, 40, Color.BLACK);
+        Shape barGlyph8 = new Shape(425, 145, 5, 40, Color.BLACK);
+        Shape barGlyph9 = new Shape(425, 240, 5, 40, Color.BLACK);
+
+        window.addShape(barGlyph);
+        window.addShape(barGlyph2);
+        window.addShape(barGlyph3);
+        window.addShape(barGlyph4);
+        window.addShape(barGlyph5);
+        window.addShape(barGlyph6);
+        window.addShape(barGlyph7);
+        window.addShape(barGlyph8);
+        window.addShape(barGlyph9);
+    }
+
+
+    public void clickedMajor(Button button) {
+        window.removeAllShapes();
+        setMajorLegend();
         
+        Shape barGlyph = new Shape(75, 50, 5, 40, Color.BLACK);
+        Shape barGlyph2 = new Shape(75, 145, 5, 40, Color.BLACK);
+        Shape barGlyph3 = new Shape(75, 240, 5, 40, Color.BLACK);
+        Shape barGlyph4 = new Shape(250, 50, 5, 40, Color.BLACK);
+        Shape barGlyph5 = new Shape(250, 145, 5, 40, Color.BLACK);
+        Shape barGlyph6 = new Shape(250, 240, 5, 40, Color.BLACK);
+        Shape barGlyph7 = new Shape(425, 50, 5, 40, Color.BLACK);
+        Shape barGlyph8 = new Shape(425, 145, 5, 40, Color.BLACK);
+        Shape barGlyph9 = new Shape(425, 240, 5, 40, Color.BLACK);
 
-        public void clickedPrev(Button button)
-        {
-            this.hide;
-            SurveyWindow sw = new SurveyWindow();
-            sw.setVisible(true);
-        }
+        window.addShape(barGlyph);
+        window.addShape(barGlyph2);
+        window.addShape(barGlyph3);
+        window.addShape(barGlyph4);
+        window.addShape(barGlyph5);
+        window.addShape(barGlyph6);
+        window.addShape(barGlyph7);
+        window.addShape(barGlyph8);
+        window.addShape(barGlyph9);
+    }
+
+
+    public void clickedState(Button button) {
+        window.removeAllShapes();
+        setRegionLegend();
         
-        public void clickedArtist(Button button)
-        {
-            textShape.setText(//Needs something in here for artist);
-            window.repaint();
-            
-            
-        }
+        Shape barGlyph = new Shape(75, 50, 5, 40, Color.BLACK);
+        Shape barGlyph2 = new Shape(75, 145, 5, 40, Color.BLACK);
+        Shape barGlyph3 = new Shape(75, 240, 5, 40, Color.BLACK);
+        Shape barGlyph4 = new Shape(250, 50, 5, 40, Color.BLACK);
+        Shape barGlyph5 = new Shape(250, 145, 5, 40, Color.BLACK);
+        Shape barGlyph6 = new Shape(250, 240, 5, 40, Color.BLACK);
+        Shape barGlyph7 = new Shape(425, 50, 5, 40, Color.BLACK);
+        Shape barGlyph8 = new Shape(425, 145, 5, 40, Color.BLACK);
+        Shape barGlyph9 = new Shape(425, 240, 5, 40, Color.BLACK);
 
-        public void clickedSong(Button button)
-        {
-            textShape.setText(//Needs something in here for song);
-            window.repaint();
-        }
+        window.addShape(barGlyph);
+        window.addShape(barGlyph2);
+        window.addShape(barGlyph3);
+        window.addShape(barGlyph4);
+        window.addShape(barGlyph5);
+        window.addShape(barGlyph6);
+        window.addShape(barGlyph7);
+        window.addShape(barGlyph8);
+        window.addShape(barGlyph9);
+    }
 
-        public void clickedYear(Button button)
-        {
-            textShape.setText(//Needs something in here for year);
-            window.repaint();
-        }
 
-        public void clickedGenre(Button button)
-        {
-            textShape.setText(//Needs something in here for genre);
-            window.repaint();
-        }
+    public void clickedQuit(Button button) {
+        System.exit(0);
+    }
 
-        public void clickedNext(Button button)
-        {
-            this.hide;
-            SurveyWindow n = new SurveyWindow();
-            n.setVisible(True);
-        }
 
-        public void clickedHobby(Button button)
-        {
-            TextShape hobbyLegend = new TextShape(0, 0, "Hobby Legend");
-            TextShape enumRead = new TextShape(0, 0, "Read");
-            enumRead.setColor(Color.PINK);
-            TextShape enumArt = new TextShape(0, 0, "Art");
-            enumArt.setColor(Color.BLUE);
-            TextShape enumSports = new TextShape(0, 0, "Sports");
-            enumSports.setColor(Color.YELLOW);
-            TextShape enumMusic = new TextShape(0, 0, "Music");
-            enumMusic.setColor(Color.GREEN);
-            
-            TextShape songTitle = new TextShape(0, 0, "Song Title");
-            TextShape heard = new TextShape(0, 0, "Head");
-            TexShape likes = new TextShape(0, 0, "Likes");
-            
-            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
-            
-        }
+    public void setHobbyLegend() {
+        legendTitle = new TextShape(555, 135, "Hobby Legend");
+        legendTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(legendTitle);
 
-        public void clickedMajor(Button button)
-        {            
-            TextShape majorLegend = new TextShape(0, 0, "Major Legend");
-            TextShape enumCS = new TextShape(0, 0, "CS");
-            enumCS.setColor(Color.PINK);
-            TextShape enumEnge = new TextShape(0, 0, "Engineer");
-            enumEnge.setColor(Color.BLUE);
-            TextShape enumMath = new TextShape(0, 0, "Math");
-            enumMath.setColor(Color.YELLOW);
-            TextShape enumOther = new TextShape(0, 0, "Other");
-            enumOther.setColor(Color.GREEN);
-            
-            TextShape songTitle = new TextShape(0, 0, "Song Title");
-            TextShape heard = new TextShape(0, 0, "Head");
-            TexShape likes = new TextShape(0, 0, "Likes");
-            
-            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
-        }
+        legend1 = new TextShape(555, 155, "Read", Color.MAGENTA);
+        legend1.setBackgroundColor(Color.WHITE);
+        window.addShape(legend1);
 
-        publc void clickedState(Button button)
-        {
-            TextShape stateRegion = new TextShape(0, 0, "State Legend");
-            TextShape enumNe = new TextShape(0, 0, "NorthEast");
-            enumNe.setColor(Color.PINK);
-            TextShape enumSe = new TextShape(0, 0, "SouthEast");
-            enumEnge.setColor(Color.BLUE);
-            TextShape enumRest = new TextShape(0, 0, "Rest of US");
-            enumMath.setColor(Color.YELLOW);
-            TextShape enumOut = new TextShape(0, 0, "Outside US");
-            enumOut.setColor(Color.GREEN);
-            
-            TextShape songTitle = new TextShape(0, 0, "Song Title");
-            TextShape heard = new TextShape(0, 0, "Head");
-            TexShape likes = new TextShape(0, 0, "Likes");
-            
-            Shape line = new SquareShape(10, 100, 15, Color.BLACK);
-        }
+        legend2 = new TextShape(555, 175, "Art", Color.BLUE);
+        legend2.setBackgroundColor(Color.WHITE);
+        window.addShape(legend2);
 
-        public void clickedQuit(Button button)
-        {
-             System.exit(0);
-        }
-        
-        
-        
-        
+        legend3 = new TextShape(555, 195, "Sports", Color.YELLOW);
+        legend3.setBackgroundColor(Color.WHITE);
+        window.addShape(legend3);
+
+        legend4 = new TextShape(555, 215, "Music", Color.GREEN);
+        legend4.setBackgroundColor(Color.WHITE);
+        window.addShape(legend4);
+
+        TextShape songTitle = new TextShape(570, 235, "Song Title");
+        songTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(songTitle);
+
+        TextShape heard = new TextShape(555, 265, "Heard");
+        heard.setBackgroundColor(Color.WHITE);
+        window.addShape(heard);
+
+        Shape legendBar = new Shape(605, 258, 5, 30, Color.BLACK);
+        window.addShape(legendBar);
+
+        TextShape likes = new TextShape(615, 265, "Likes");
+        likes.setBackgroundColor(Color.WHITE);
+        window.addShape(likes);
+
+        legendBorder = new Shape(550, 130, 110, 160, Color.WHITE);
+        legendBorder.setForegroundColor(Color.BLACK);
+        window.addShape(legendBorder);
+    }
+
+
+    public void setMajorLegend() {
+        legendTitle = new TextShape(555, 135, "Major Legend");
+        legendTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(legendTitle);
+
+        legend1 = new TextShape(555, 155, "Computer Sci", Color.MAGENTA);
+        legend1.setBackgroundColor(Color.WHITE);
+        window.addShape(legend1);
+
+        legend2 = new TextShape(555, 175, "Other Eng", Color.BLUE);
+        legend2.setBackgroundColor(Color.WHITE);
+        window.addShape(legend2);
+
+        legend3 = new TextShape(555, 195, "Math/CMDA", Color.YELLOW);
+        legend3.setBackgroundColor(Color.WHITE);
+        window.addShape(legend3);
+
+        legend4 = new TextShape(555, 215, "Other", Color.GREEN);
+        legend4.setBackgroundColor(Color.WHITE);
+        window.addShape(legend4);
+
+        TextShape songTitle = new TextShape(570, 235, "Song Title");
+        songTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(songTitle);
+
+        TextShape heard = new TextShape(555, 265, "Heard");
+        heard.setBackgroundColor(Color.WHITE);
+        window.addShape(heard);
+
+        Shape legendBar = new Shape(605, 258, 5, 30, Color.BLACK);
+        window.addShape(legendBar);
+
+        TextShape likes = new TextShape(615, 265, "Likes");
+        likes.setBackgroundColor(Color.WHITE);
+        window.addShape(likes);
+
+        legendBorder = new Shape(550, 130, 110, 160, Color.WHITE);
+        legendBorder.setForegroundColor(Color.BLACK);
+        window.addShape(legendBorder);
+    }
+
+
+    public void setRegionLegend() {
+        legendTitle = new TextShape(555, 135, "Region Legend");
+        legendTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(legendTitle);
+
+        legend1 = new TextShape(555, 155, "Northeast US", Color.MAGENTA);
+        legend1.setBackgroundColor(Color.WHITE);
+        window.addShape(legend1);
+
+        legend2 = new TextShape(555, 175, "Southeast US", Color.BLUE);
+        legend2.setBackgroundColor(Color.WHITE);
+        window.addShape(legend2);
+
+        legend3 = new TextShape(555, 195, "the rest of US", Color.YELLOW);
+        legend3.setBackgroundColor(Color.WHITE);
+        window.addShape(legend3);
+
+        legend4 = new TextShape(555, 215, "outside of US", Color.GREEN);
+        legend4.setBackgroundColor(Color.WHITE);
+        window.addShape(legend4);
+
+        TextShape songTitle = new TextShape(570, 235, "Song Title");
+        songTitle.setBackgroundColor(Color.WHITE);
+        window.addShape(songTitle);
+
+        TextShape heard = new TextShape(555, 265, "Heard");
+        heard.setBackgroundColor(Color.WHITE);
+        window.addShape(heard);
+
+        Shape legendBar = new Shape(605, 258, 5, 30, Color.BLACK);
+        window.addShape(legendBar);
+
+        TextShape likes = new TextShape(615, 265, "Likes");
+        likes.setBackgroundColor(Color.WHITE);
+        window.addShape(likes);
+
+        legendBorder = new Shape(550, 130, 110, 160, Color.WHITE);
+        legendBorder.setForegroundColor(Color.BLACK);
+        window.addShape(legendBorder);
+    }
 }
- 
-
-
